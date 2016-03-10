@@ -19,6 +19,17 @@ public class EmpListServlet extends HttpServlet {
         printWriter.println("<body>");
         printWriter.println("<center>");
 
+        //실 내용 출력
+            //첫번째 테이블 생성
+            printWriter.println("<table width=600 border=0>");
+                printWriter.println("<tr>");
+                    printWriter.println("<td>");
+                        printWriter.println("<a href=MainServlet?type=1>등록</a>");
+                    printWriter.println("</td>");
+                printWriter.println("</tr>");
+            printWriter.println("</table>");
+
+
         printWriter.println("</center>");
         printWriter.println("</body>");
         printWriter.println("</html>");
