@@ -15,6 +15,7 @@ public class MainServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //수행 방식 전송(브라우저) ==> html, xml
+        //MainServlet?type=1
         resp.setContentType("text/html;charset=EUC-KR");
 
         String file="";
@@ -49,11 +50,8 @@ public class MainServlet extends HttpServlet {
             printWriter.println("&nbsp;");
             printWriter.println("</td>");
 
-            printWriter.println("<td height=450 width=200>");
-            printWriter.println("&nbsp;");
-            printWriter.println("</td>");
-
             printWriter.println("<td height=450 width=800 align=center style=\"margin-top:10px \" >");
+
             requestDispatcher=req.getRequestDispatcher(file);
             requestDispatcher.include(req,resp);
             printWriter.println("</td>");

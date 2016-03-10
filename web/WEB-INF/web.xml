@@ -3,6 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+    <display-name>EmpProject</display-name>
     <servlet>
         <servlet-name>main</servlet-name>
         <servlet-class>com.sist.view.MainServlet</servlet-class>
@@ -20,7 +21,34 @@
         <servlet-name>header</servlet-name>
         <url-pattern>/HeaderServlet</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>list</servlet-name>
+        <servlet-class>com.sist.view.EmpListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>list</servlet-name>
+        <url-pattern>/EmpListServlet</url-pattern>
+    </servlet-mapping>
 </web-app>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
