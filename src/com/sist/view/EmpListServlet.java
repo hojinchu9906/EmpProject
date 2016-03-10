@@ -52,6 +52,11 @@ public class EmpListServlet extends HttpServlet {
                     for(EmpDTO empDTO: empDTOList){
                         printWriter.println("<tr>");
                             printWriter.println("<td align=center>" +empDTO.getEmpno()+ "</td>");
+
+                            printWriter.println("<td align=center>");
+                                printWriter.println("<a href=MainServlet?type=2&empno="+empDTO.getEmpno()+">");
+                                printWriter.println(empDTO.getEname() +"</a>");
+                            printWriter.println("</td>");
                         printWriter.println("</tr>");
                     }
 
