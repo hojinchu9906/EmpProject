@@ -30,6 +30,17 @@ public class EmpListServlet extends HttpServlet {
             printWriter.println("</table>");
 
 
+            //두번째 테이블 추가
+            printWriter.println("<table width=600 border=0>");
+                printWriter.println("<tr bgcolor=#ccccff>");
+                    printWriter.println("<th>사원번호</th>");
+
+                printWriter.println("</tr>");
+
+
+
+            printWriter.println("</table>");
+
         printWriter.println("</center>");
         printWriter.println("</body>");
         printWriter.println("</html>");
