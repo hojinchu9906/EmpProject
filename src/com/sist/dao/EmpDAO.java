@@ -141,6 +141,39 @@ public class EmpDAO {
 
         return arrayList;
     }
+
+    //기능추가. emp 테이블로부터 선임사원번호를 얻어옴.
+    public List<Integer> empGetMgr(){
+        //선임사원번호를 캘력션 객체에 저장해서 리턴함.
+        //해당 컬랙션 객체 생성
+        List<Integer> mgrList=new ArrayList<>();
+
+        //해당 선임사원번호를 emp테이블에 접속하여 쿼리문을 실행하여 결과를 얻어온다.
+        try{
+            getConnection();
+            //테이블에 질의할 쿼리문 작성
+            String sql="SELECT DISTINCT mgr FROM emp "
+                        +"WHERE mgr IS NOT NULL";
+
+            //쿼리문 전송할 스트림 객체 획득
+            preparedStatement=connection.prepareStatement(sql);
+            //쿼리문 실행
+            ResultSet resultSet=preparedStatement.executeQuery();
+
+            //쿼리문 결과를 캘랙션 객체에 추가함.
+            while(resultSet.next()){
+                mgrList.add(resultSet.getInt(1));
+            }
+            //쿼리문 실행 결과를 담어놓은 리젤트셋 다 사용후 종료해 줌.
+            resultSet.close();
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }finally {
+            disConnection();
+        }
+
+        return mgrList;
+    }
 }
 
 

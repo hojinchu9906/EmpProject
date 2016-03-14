@@ -50,6 +50,25 @@ public class InsertServlet extends HttpServlet{
                                     printWriter.println("</td>");
                                 printWriter.println("</tr>");
 
+                                //테이블내 두번째줄
+                                printWriter.println("<tr>");
+                                    //두번째 줄 첫번째 칸
+                                    printWriter.println("<td width=25% align=right>선임사원번호</td>");
+                                    printWriter.println("<td width=25% align=left>");
+                                        //디비로부터 선임사원번호를 얻어온다.
+                                        //컬랙션 객체에 담아놓는다.
+                                        List<Integer> mrgList=empDAO.empGetMgr();
+                                        //위 컬랙션객체에 있는 내용을 선택리스트로 출력해줌.
+                                        printWriter.println("<select name=mgr>");
+                                            for(int mgr:mrgList){
+                                                printWriter.println("<option>" +mgr+  "</option>");
+                                            }
+                                        printWriter.println("</select>");
+                                    printWriter.println("</td>");
+                                    //두번째 줄 두번째 칸
+                                    printWriter.println("<td>부서번호</td>");
+
+                                printWriter.println("</tr>");
                             printWriter.println("</table>");
                         printWriter.println("</form>");
                     printWriter.println("</center>");
