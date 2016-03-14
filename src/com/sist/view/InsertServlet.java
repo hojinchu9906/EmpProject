@@ -1,6 +1,7 @@
 package com.sist.view;
 
 import com.sist.dao.EmpDAO;
+import sun.dc.pr.PRError;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 /**
  * Created by cjw on 2016-03-14.
@@ -34,7 +36,20 @@ public class InsertServlet extends HttpServlet{
                                     printWriter.println("</td>");
 
                                     printWriter.println("<td width=15% align=right>직위</td>");
+                                    printWriter.println("<td width=35% align=left>");
+                                        //직위 항목을 디비에서 읽어와 셀렉트리스트로 출력하기
+                                        //해당 셀펙트리스트에 사용할 리스트 컬랙션 객체 받기
+                                        List<String> jobList=empDAO.empGetJob();
+                                        //선택리스트 추가
+                                        printWriter.println("<select name=job>");
+                                            //이제 직위리스트가 담긴 컬랙션에 있는 내용을 가져옴.
+                                            for(String str: jobList){
+                                                printWriter.println("<option>" +str+ "</option>");
+                                            }
+                                        printWriter.println("</select>");
+                                    printWriter.println("</td>");
                                 printWriter.println("</tr>");
+
                             printWriter.println("</table>");
                         printWriter.println("</form>");
                     printWriter.println("</center>");

@@ -107,6 +107,40 @@ public class EmpDAO {
         }
         return empDTOList;
     }
+
+    //기능 추가.  잡항목리스트 디비로부터 가져오기 함수
+    public List<String> empGetJob(){
+        //해당 항목을 디비로부터 가져와 저장해둘 컬랙션 객체 생성하기
+        List<String> arrayList=new ArrayList<>();
+
+        //해당 항목 디비로 부터 받아오기
+        try{
+            getConnection();
+            //쿼리문
+            //emp 테이블에서의 직함인데, 그중 장은 한명만 있어서 직함항목에 해당이 안되므로
+            // ename=KING인 사원의 직함인 제외한 쿼리문을 작성한다.
+            String sql="SELECT DISTINCT job FROM emp "
+                        +"WHERE ename<>'KING'";
+
+            //해당 쿼리문을 스트림으로 디비에 전송할 객체 획득.
+            preparedStatement=connection.prepareStatement(sql);
+
+            //이제 해당 쿼리문을 실행하여 결과를 ResultSet에 저장함.
+            ResultSet resultSet=preparedStatement.executeQuery();
+            //해당 내용을 이 함수 맨 앞에서 선언한 컬랙션객체에 저장하고 그걸 리턴함.
+            while(resultSet.next()){
+                arrayList.add(resultSet.getString(1));
+            }
+            //리절트셋 사용이 다 끝났으면 종료함.
+            resultSet.close();
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }finally {
+            disConnection();
+        }
+
+        return arrayList;
+    }
 }
 
 
