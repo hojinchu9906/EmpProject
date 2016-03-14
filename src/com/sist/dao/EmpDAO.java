@@ -21,7 +21,7 @@ public class EmpDAO {
     private PreparedStatement preparedStatement;
 
     //디비 주소 선언
-    private final String URL="jdbc:oracle:thin:@211.238.142.20:1521:ORCL";
+    private final String URL="jdbc:oracle:thin:@211.238.142.72:1521:ORCL";
 
     //생성자에서 오라클 디비 연결 초기화 작업함.-클라이언트단에서 필요한 디비 드라이버 로드함.
     public EmpDAO(){
@@ -44,7 +44,7 @@ public class EmpDAO {
     //오라클  디비 연결 객체 생성-함수로 기능 추가함.
     public void getConnection(){
         try{
-            connection= DriverManager.getConnection(URL,"scott","tiger");
+            connection= DriverManager.getConnection(URL,"scott5","tiger5");
         }catch(Exception ex){
             System.out.println("getConnection: " +ex.getMessage());
         }
