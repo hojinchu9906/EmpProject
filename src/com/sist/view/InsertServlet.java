@@ -94,9 +94,22 @@ public class InsertServlet extends HttpServlet{
                                             printWriter.println("<option>4500</option>");
                                         printWriter.println("</select>");
                                     printWriter.println("</td>");
-
-
+                                    //셋째줄 두번째 칸-성과급 리스트 추가함.
+                                    printWriter.println("<td width=15% align=right>보너스급</td>");
+                                    printWriter.println("<td width=35% align=left>");
+                                        //입력시 선택하여 고르는 선택 리스트 추가
+                                        printWriter.println("<select name=commition>");
+                                            printWriter.println("<option>100</option>");
+                                            printWriter.println("<option>200</option>");
+                                            printWriter.println("<option>300</option>");
+                                            printWriter.println("<option>400</option>");
+                                            printWriter.println("<option>500</option>");
+                                        printWriter.println("</select>");
+                                    printWriter.println("<td>");
                                 printWriter.println("</tr>");
+
+                                //마지막 네번째 줄
+
                             printWriter.println("</table>");
                         printWriter.println("</form>");
                     printWriter.println("</center>");
