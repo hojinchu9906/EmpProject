@@ -174,6 +174,44 @@ public class EmpDAO {
 
         return mgrList;
     }
+
+    //테이블에 데이터 입력하는 기능 함수
+    public void empInsert(EmpDTO empDTO){
+        try{
+            getConnection();
+            //입력 쿼리문 생성
+            /*
+              EMPNO NUMBER,
+              ENAME VARCHAR2,
+              JOB VARCHAR2,
+              MGR NUMBER,
+              HIREDATE DATE,
+              SAL NUMBER,
+              COMM NUMBER,
+              DEPTNO NUMBER
+             */
+            String sql="INSERT INTO emp VALUES( "
+                        +"(SELECT MAX(empno)+1 FROM emp),"
+                        +"?,?,?,SYSDATE,?,?,?)";
+
+            //위 커리문 보낼 스트림 객체 생성
+            preparedStatement=connection.prepareStatement(sql);
+            //이 스트림 객체에 해당 입력값들을 각각 셋팅함.
+            preparedStatement.setString(1,empDTO.getEname());
+            preparedStatement.setString(2,empDTO.getJob());
+            preparedStatement.setInt(3,empDTO.getMgr());
+            preparedStatement.setInt(4,empDTO.getSal());
+            preparedStatement.setInt(5,empDTO.getComm());
+            preparedStatement.setInt(6,empDTO.getDeptno());
+
+            //위 셋팅된 항목을 실행함.
+            preparedStatement.executeUpdate();
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }finally {
+            disConnection();
+        }
+    }
 }
 
 

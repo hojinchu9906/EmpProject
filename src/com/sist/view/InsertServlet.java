@@ -1,6 +1,7 @@
 package com.sist.view;
 
 import com.sist.dao.EmpDAO;
+import com.sist.dao.EmpDTO;
 import sun.dc.pr.PRError;
 
 import javax.servlet.ServletException;
@@ -69,7 +70,7 @@ public class InsertServlet extends HttpServlet{
                                     printWriter.println("<td width=15% align=right>부서번호</td>");
                                     printWriter.println("<td width=35% align=left>");
                                         //선택리스트 추가함.
-                                        printWriter.println("<select>");
+                                        printWriter.println("<select name=deptno>");
                                         //부서번호를 선택 입력하는것임
                                             printWriter.println("<option>10</option>");
                                             printWriter.println("<option>20</option>");
@@ -124,6 +125,40 @@ public class InsertServlet extends HttpServlet{
                 printWriter.println("</body>");
         printWriter.println("</html>");
 
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("EUC-KR");
+        //위 doGet()에서 입력했던 모든 값들을 변수에 담아서
+        //각 항목의 값들을 AO에 셋팅해서
+        //최종적으로 dao의 입력하기 기능을 활용하여 테이블에 추가함.
+        //추가하고 나서는 다시 메인 리스트 서블릿으로 리다이렉트함.
+
+        String ename=req.getParameter("ename");
+        String job=req.getParameter("job");
+        String mgr=req.getParameter("mgr");
+        String salary=req.getParameter("salary");
+        String commition=req.getParameter("commition");
+        String deptno=req.getParameter("deptno");
+
+        //DTO 즉 AO에 셋팅하기 위해 AO 객체 생성
+        EmpDTO empDTO=new EmpDTO();
+        //위의 각 입력받은 값들을 AO 각 필드에 셋팅함.
+        empDTO.setEname(ename);
+        empDTO.setJob(job);
+        empDTO.setMgr(Integer.parseInt(mgr));
+        empDTO.setSal(Integer.parseInt(salary));
+        empDTO.setComm(Integer.parseInt(commition));
+        empDTO.setDeptno(Integer.parseInt(deptno));
+
+        //이제 이 값들을 서버측에 보내 테이블에 입력하면 됨.
+        //우선 입력기능을 직접적으로 호출할수 있는 함수를 갖고 있는 DAO객체 생성
+        EmpDAO empDAO=new EmpDAO();
+        empDAO.empInsert(empDTO);
+
+        //입력후 메인리스트로 리다이렉트함
+        resp.sendRedirect("MainServlet");
     }
 }
 
