@@ -80,8 +80,23 @@ public class InsertServlet extends HttpServlet{
                                 printWriter.println("</tr>");
 
                                 //세번째 줄
+                                //급여 선택리스트 출력하기
+                                printWriter.println("<tr>");
+                                    printWriter.println("<td width=25% align=right>사원연봉대</td>");
+                                    printWriter.println("<td>");
+                                        //선택리스트 추가
+                                        printWriter.println("<select name=salary>");
+                                            //옵션태그들 추가
+                                            printWriter.println("<option>1000</option>");
+                                            printWriter.println("<option>2000</option>");
+                                            printWriter.println("<option>3000</option>");
+                                            printWriter.println("<option>4000</option>");
+                                            printWriter.println("<option>4500</option>");
+                                        printWriter.println("</select>");
+                                    printWriter.println("</td>");
 
 
+                                printWriter.println("</tr>");
                             printWriter.println("</table>");
                         printWriter.println("</form>");
                     printWriter.println("</center>");
